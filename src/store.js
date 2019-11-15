@@ -1,11 +1,12 @@
 import { writable, derived } from 'svelte/store'
+import { assemble } from './assemble'
 
-export const search_query = writable('')
+export const search_query = writable('reply')
 export const results = derived(search_query, search, [])
 export const message = (function(){
   const { subscribe, set } = writable('')
 
-  const done = (length = 0) => set(`done (found ${length} podcast)`)
+  const done = (length = 0) => set(`Found ${length} podcast${length > 1 ? 's' : ''}`)
   const loading = () => set('loading...')
   const error = (err) => set(err)
 
@@ -25,8 +26,8 @@ async function search(query, set) {
 
     timerId = setTimeout(async function () {
       message.loading()
-      const result = await fetch('.netlify/functions/search', {
-      // const result = await fetch('/sample.json', {
+      // const result = await fetch('.netlify/functions/search', {
+      const result = await fetch('/sample.json', {
         method: 'POST',
         body: JSON.stringify({ query }),
       })
@@ -50,5 +51,8 @@ async function search(query, set) {
 }
 
 function process(results) {
-  return results.filter(res => !!res.feedUrl)
+  return results.filter(res => !!res.feedUrl).map(podcast => ({
+    ...podcast,
+    feedUrl: assemble(podcast.feedUrl),
+  }))
 }

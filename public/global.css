@@ -50,4 +50,12 @@ table {
 
 html {
 	font-family: sans-serif;
+	background-color: var(--bg);
+	color: var(--fg);
+}
+
+:root {
+	--bg: #FFFEF8;
+	--fg: #1F0744;
+	--pt-1: tomato;
 }
