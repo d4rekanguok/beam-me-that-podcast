@@ -1,6 +1,7 @@
 <script>
 	import Podcast from './Podcast.svelte'
 	import Status from './Status.svelte'
+	import Saved from './Saved.svelte'
 	import { search_query, results } from '../store'
 </script>
 
@@ -41,6 +42,7 @@
 	}
 </style>
 
+<Saved />
 <main>
 	<div>
 		<label for="rss-input">
@@ -57,7 +59,7 @@
 	<Status />
 	<hr />
 	<ul class="results">
-		{#each $results as result, i (result.feedUrl)}
+		{#each $results as result, i (result.feedId)}
 			<li>
 				<Podcast result={result} />
 			</li>

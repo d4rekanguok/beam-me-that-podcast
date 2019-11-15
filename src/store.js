@@ -13,6 +13,32 @@ export const message = (function(){
   return { subscribe, done, loading, error }
 })()
 
+export const saved = (function(){
+  const { subscribe, update, set } = writable([])
+
+  const reset = () => set([])
+  const add = (podcast) => update($saved => {
+    const already_added = $saved.some(saved_pod => saved_pod.feedId === podcast.feedId)
+    if (already_added) {
+      console.warn(`saved.add: '${podcast.trackName}' is already added.`)
+      return $saved
+    }
+    $saved.push(podcast)
+    return $saved
+  })
+  const remove = (feedId) => update($saved => {
+    const podcastId = $saved.findIndex(podcast => podcast.feedId === feedId)
+    if (podcastId < 0) {
+      console.warn('saved.remove: Podcast doesnt exists.')
+      return $saved
+    }
+    $saved.splice(podcastId, 1)
+    return $saved
+  })
+
+  return { subscribe, add, remove, reset }
+})()
+
 let timerId = false
 
 async function search(query, set) {
@@ -53,6 +79,6 @@ async function search(query, set) {
 function process(results) {
   return results.filter(res => !!res.feedUrl).map(podcast => ({
     ...podcast,
-    feedUrl: assemble(podcast.feedUrl),
+    feedId: assemble(podcast.feedUrl),
   }))
 }

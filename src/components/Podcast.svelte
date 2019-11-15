@@ -1,9 +1,16 @@
 <script>
+  import { saved } from '../store'
+
   export let result = {
     artworkUrl100: '',
     trackName: '',
     artistName: '',
     feedUrl: '',
+    feedId: '',
+  }
+
+  function handleSave() {
+    saved.add(result)
   }
 </script>
 
@@ -62,9 +69,12 @@
     <div class="info">
       <h2 class="artist-name">{result.artistName}</h2>
       <h1 class="podcast-name">{result.trackName}</h1>
-      <a href={result.feedUrl} title={result.trackName}>
+      <a href={result.feedId} title={result.trackName}>
         Listen
       </a>
+      <button on:click={handleSave}>
+        Save
+      </button>
     </div>
   </article>
 </li>
