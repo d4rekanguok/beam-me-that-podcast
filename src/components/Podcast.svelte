@@ -1,6 +1,7 @@
 <script>
   import { saved } from '../store'
 
+  export let is_saved = false
   export let result = {
     artworkUrl100: '',
     trackName: '',
@@ -72,8 +73,8 @@
       <a href={result.feedId} title={result.trackName}>
         Listen
       </a>
-      <button on:click={handleSave}>
-        Save
+      <button on:click={handleSave} disabled={is_saved}>
+        {is_saved ? 'Saved' : 'Save'}
       </button>
     </div>
   </article>

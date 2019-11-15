@@ -2,7 +2,11 @@
 	import Podcast from './Podcast.svelte'
 	import Status from './Status.svelte'
 	import Saved from './Saved.svelte'
-	import { search_query, results } from '../store'
+	import { search_query, results, saved } from '../store'
+
+	function isSaved(feedId) {
+		return $saved.some(podcast => podcast.feedId === feedId)
+	}
 </script>
 
 <style>
@@ -61,7 +65,7 @@
 	<ul class="results">
 		{#each $results as result, i (result.feedId)}
 			<li>
-				<Podcast result={result} />
+				<Podcast result={result} is_saved={isSaved(result.feedId)} />
 			</li>
 		{/each}
 	</ul>
