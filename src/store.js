@@ -1,6 +1,8 @@
 import { writable, derived } from 'svelte/store'
 import { assemble } from './assemble'
 
+const LS_ID = 'beam-me-saved'
+
 export const search_query = writable('reply')
 export const results = derived(search_query, search, [])
 export const message = (function(){
@@ -14,9 +16,11 @@ export const message = (function(){
 })()
 
 export const saved = (function(){
-  const { subscribe, update, set } = writable([])
+  const maybe_saved = localStorage.getItem(LS_ID) || "[]"
+  const { subscribe, update, set } = writable(JSON.parse(maybe_saved))
 
   const reset = () => set([])
+
   const add = (podcast) => update($saved => {
     const already_added = $saved.some(saved_pod => saved_pod.feedId === podcast.feedId)
     if (already_added) {
@@ -26,6 +30,7 @@ export const saved = (function(){
     $saved.push(podcast)
     return $saved
   })
+  
   const remove = (feedId) => update($saved => {
     const podcastId = $saved.findIndex(podcast => podcast.feedId === feedId)
     if (podcastId < 0) {
@@ -34,6 +39,10 @@ export const saved = (function(){
     }
     $saved.splice(podcastId, 1)
     return $saved
+  })
+
+  subscribe($saved => {
+    localStorage.setItem(LS_ID, JSON.stringify($saved))
   })
 
   return { subscribe, add, remove, reset }
