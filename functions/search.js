@@ -11,6 +11,7 @@ exports.handler = async function(event, context) {
   const body = JSON.parse(event.body)
   const { query } = body
   try {
+    console.log('happening...')
     const { body: results } = await got(
       `https://itunes.apple.com/search?attribute=titleTerm&entity=podcast&term=${query}`, 
       { json: true },
@@ -22,7 +23,7 @@ exports.handler = async function(event, context) {
   } catch(err) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ message: err.message })
+      body: JSON.stringify({ errors: err.message })
     }
   }
 }
