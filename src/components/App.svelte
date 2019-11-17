@@ -65,13 +65,13 @@
 		<Saved />
 		<div class="input">
 			<label for="rss-input">
-				Search for a podcast & listen to it on Google Podcast's Web player.
+				Search for a podcast or paste an URL & listen to it on Google Podcast's web player.
 			</label>
 			<input
 				id="rss-input"
 				bind:value={$search_query} 
 				type="text"
-				placeholder="i.e. Reply All"
+				placeholder="i.e. Reply All or https://feeds.megaphone.fm/replyall"
 			>
 			<Status />
 		</div>

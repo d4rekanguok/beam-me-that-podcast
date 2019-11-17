@@ -26,6 +26,11 @@
     margin: 1rem 0;
     text-align: center;
   }
+
+  img {
+    max-width: 100px;
+    border-radius: 3px;
+  }
 </style>
 
 <section>
@@ -33,7 +38,11 @@
     {#each $saved as podcast, i (podcast.feedId)}
       <li>
         <a href={podcast.feedId} rel="noreferrer">
-          <img src={podcast.artworkUrl100} alt={podcast.trackName}>
+          <img
+            src={podcast.artworkUrl100}
+            alt={podcast.trackName}
+            title={podcast.trackName}
+          >
         </a>
         <button on:click={handleClear(podcast.feedId)}>Remove</button>
       </li>
