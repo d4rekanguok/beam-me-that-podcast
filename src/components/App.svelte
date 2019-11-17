@@ -15,11 +15,6 @@
 		width: 100%;
 	}
 
-	hr {
-		border: none;
-		border-bottom: 1px solid rgba(0,0,0,.1);
-	}
-
 	.top {
 		position: sticky;
 		background-color: var(--bg);
@@ -71,7 +66,7 @@
 				id="rss-input"
 				bind:value={$search_query} 
 				type="text"
-				placeholder="i.e. Reply All or https://feeds.megaphone.fm/replyall"
+				placeholder="i.e. 'Reply All' or 'https://feeds.megaphone.fm/replyall'"
 			>
 			<Status />
 		</div>
