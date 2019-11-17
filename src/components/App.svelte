@@ -71,7 +71,7 @@
 				id="rss-input"
 				bind:value={$search_query} 
 				type="text"
-				placeholder="i.e. Reply All"
+				placeholder="i.e. Reply All or https://feeds.megaphone.fm/replyall"
 			>
 			<Status />
 		</div>
