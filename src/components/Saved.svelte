@@ -29,7 +29,7 @@
 
   img {
     max-width: 100px;
-    border-radius: 3px;
+    border-radius: var(--br, 3px);
   }
 </style>
 

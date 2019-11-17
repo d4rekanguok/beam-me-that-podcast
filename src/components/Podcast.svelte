@@ -30,6 +30,7 @@
 
   .image img {
     width: 100%;
+    border-radius: var(--br, 3px);
   }
 
   .info {
