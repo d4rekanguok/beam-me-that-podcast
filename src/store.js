@@ -72,8 +72,10 @@ async function search(query, set) {
       return set([])
     }
 
+    message.loading()
+    set([])
+
     timerId = setTimeout(async function () {
-      message.loading()
       const result = await fetch('api/search', {
       // const result = await fetch('/sample.json', {
         method: 'POST',
