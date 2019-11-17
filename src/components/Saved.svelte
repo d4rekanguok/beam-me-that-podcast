@@ -26,6 +26,11 @@
     margin: 1rem 0;
     text-align: center;
   }
+
+  img {
+    max-width: 100px;
+    border-radius: 3px;
+  }
 </style>
 
 <section>

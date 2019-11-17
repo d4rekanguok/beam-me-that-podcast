@@ -54,6 +54,17 @@ async function search(query, set) {
   try {
     timerId && clearTimeout(timerId)
 
+    // handle rss url
+    if (query.startsWith('http')) {
+      const custom_pod = [{
+        artworkUrl100: './pod-default.png',
+        trackName: query,
+        artistName: 'Custom RSS URL',
+        feedUrl: query,
+      }]
+      return set(process(custom_pod))
+    }
+
     if (query.trim() === '') {
       message.done()
       return set([])

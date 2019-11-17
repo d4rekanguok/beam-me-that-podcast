@@ -65,7 +65,7 @@
 		<Saved />
 		<div class="input">
 			<label for="rss-input">
-				Search for a podcast & listen to it on Google Podcast's Web player.
+				Search for a podcast or paste an URL & listen to it on Google Podcast's web player.
 			</label>
 			<input
 				id="rss-input"
