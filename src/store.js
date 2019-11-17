@@ -3,7 +3,7 @@ import { assemble } from './assemble'
 
 const LS_ID = 'beam-me-saved'
 
-export const search_query = writable('r')
+export const search_query = writable('')
 export const results = derived(search_query, search, [])
 export const message = (function(){
   const { subscribe, set } = writable('')
@@ -74,8 +74,8 @@ async function search(query, set) {
 
     timerId = setTimeout(async function () {
       message.loading()
-      // const result = await fetch('api/search', {
-      const result = await fetch('/sample.json', {
+      const result = await fetch('api/search', {
+      // const result = await fetch('/sample.json', {
         method: 'POST',
         body: JSON.stringify({ query }),
         headers: {

@@ -38,7 +38,11 @@
     {#each $saved as podcast, i (podcast.feedId)}
       <li>
         <a href={podcast.feedId} rel="noreferrer">
-          <img src={podcast.artworkUrl100} alt={podcast.trackName}>
+          <img
+            src={podcast.artworkUrl100}
+            alt={podcast.trackName}
+            title={podcast.trackName}
+          >
         </a>
         <button on:click={handleClear(podcast.feedId)}>Remove</button>
       </li>
