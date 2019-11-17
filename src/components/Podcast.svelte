@@ -55,6 +55,12 @@
     line-height: 1.25;
   }
 
+  .feed-url {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin-bottom: 0.5rem;
+  }
+
   a {
     color: var(--pt-1);
     font-weight: bold;
@@ -70,6 +76,7 @@
     <div class="info">
       <h2 class="artist-name">{result.artistName}</h2>
       <h1 class="podcast-name">{result.trackName}</h1>
+      <p class="feed-url">{result.feedUrl}</p>
       <a href={result.feedId} title={result.trackName}>
         Listen
       </a>
